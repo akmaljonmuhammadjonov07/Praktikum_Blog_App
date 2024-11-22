@@ -1,3 +1,4 @@
+import { Toaster } from '@/components/ui/sonner';
 import { ChildProps } from '@/types';
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
@@ -34,6 +35,7 @@ function RootLayout({ children }: ChildProps) {
 					disableTransitionOnChange
 				>
 					{children}
+					<Toaster position='top-center' />
 				</ThemeProvider>
 			</body>
 		</html>

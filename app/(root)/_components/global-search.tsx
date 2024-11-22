@@ -1,9 +1,15 @@
 import { Badge } from '@/components/ui/badge';
-import { Drawer, DrawerContent, DrawerTrigger } from '@/components/ui/drawer';
+import {
+	Drawer,
+	DrawerClose,
+	DrawerContent,
+	DrawerTrigger,
+} from '@/components/ui/drawer';
 import { Input } from '@/components/ui/input';
 import { popularCategories, popularTags } from '@/constants';
 import { DialogDescription, DialogTitle } from '@radix-ui/react-dialog';
-import { Search } from 'lucide-react';
+import { Minus, Search } from 'lucide-react';
+import Link from 'next/link';
 
 function GlobalSearch() {
 	return (
@@ -24,23 +30,44 @@ function GlobalSearch() {
 					/>
 
 					<div className='flex flex-col space-y-2 mt-4'>
-						<p className='font-creteRound text-2xl'>See posts by categories</p>
+						<div className='flex items-center gap-2'>
+							<p className='font-createRound text-2xl'>
+								See posts by categories
+							</p>
+							<Minus />
+							<Link href={'/categories'}>
+								<DrawerClose className='text-blue-500 underline hover:opacity-90'>
+									See all
+								</DrawerClose>
+							</Link>
+						</div>
 						<div className='flex flex-wrap gap-2'>
 							{popularCategories.map(item => (
-								<Badge key={item.slug} variant={'secondary'}>
-									{item.name}
-								</Badge>
+								<Link href={`/categories/${item.slug}`} key={item.slug}>
+									<DrawerClose>
+										<Badge variant={'secondary'}>{item.name}</Badge>
+									</DrawerClose>
+								</Link>
 							))}
 						</div>
 					</div>
-
 					<div className='flex flex-col space-y-2 mt-4'>
-						<p className='font-creteRound text-2xl'>See posts by tags</p>
+						<div className='flex items-center gap-2'>
+							<p className='font-createRound text-2xl'>See posts by tags</p>
+							<Minus />
+							<Link href={'/tags'}>
+								<DrawerClose className='text-blue-500 underline hover:opacity-90'>
+									See all
+								</DrawerClose>
+							</Link>
+						</div>
 						<div className='flex flex-wrap gap-2'>
 							{popularTags.map(item => (
-								<Badge key={item.slug} variant={'secondary'}>
-									{item.name}
-								</Badge>
+								<Link href={`/tags/${item.slug}`} key={item.slug}>
+									<DrawerClose>
+										<Badge variant={'secondary'}>{item.name}</Badge>
+									</DrawerClose>
+								</Link>
 							))}
 						</div>
 					</div>
