@@ -1,12 +1,12 @@
-import { cn } from '@/lib/utils'
-import { IBlog } from '@/types'
-import { CalendarDays, Clock, Dot, Minus } from 'lucide-react'
-import Image from 'next/image'
-import Link from 'next/link'
-import { Badge } from '../ui/badge'
-
+import { cn, getReadingTime } from '@/lib/utils';
+import { IBlog } from '@/types';
+import { format } from 'date-fns';
+import { CalendarDays, Clock, Dot, Minus } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { Badge } from '../ui/badge';
 interface Props extends IBlog {
-	isVertical?: boolean
+	isVertical?: boolean;
 }
 
 function BlogCard(blog: Props) {
@@ -22,7 +22,7 @@ function BlogCard(blog: Props) {
 				<Image
 					width={650}
 					height={335}
-					src={blog.image}
+					src={blog.image.url}
 					alt={blog.title}
 					className='px-2 md:px-7 rounded-md group-hover:-translate-y-7 -translate-y-6 transition-all object-cover grayscale group-hover:grayscale-0 max-md:-translate-y-2 max-md:group-hover:-translate-y-3'
 				/>
@@ -32,12 +32,12 @@ function BlogCard(blog: Props) {
 				<div className='flex items-center gap-4'>
 					<div className='flex items-center gap-2'>
 						<CalendarDays className='w-5 h-5' />
-						<p>{blog.date}</p>
+						<p>{format(new Date(blog.createdAt), 'MMM dd yyyy')}</p>
 					</div>
 					<Minus />
 					<div className='flex items-center gap-2'>
 						<Clock className='w-5 h-5' />
-						<p>01 min read</p>
+						<p>{getReadingTime(blog.content.html)} min read</p>
 					</div>
 				</div>
 
@@ -51,22 +51,22 @@ function BlogCard(blog: Props) {
 				<div className='flex items-center gap-4'>
 					<div className='flex items-center gap-2'>
 						<Image
-							src={'/author/thomas-macaulay.jpg'}
+							src={blog.author.image.url}
 							alt='author'
 							width={30}
 							height={30}
 							className='object-cover rounded-sm'
 						/>
-						<p>by {blog.author}</p>
+						<p>by {blog.author.name}</p>
 					</div>
 					<Dot />
 					<div className='flex items-center gap-2'>
-						<Badge variant={'secondary'}>Machine learning</Badge>
+						<Badge variant={'secondary'}>{blog.tag.name}</Badge>
 					</div>
 				</div>
 			</div>
 		</Link>
-	)
+	);
 }
 
-export default BlogCard
+export default BlogCard;
