@@ -1,8 +1,8 @@
-import { IBlog, ICategoryAndTags } from '@/types';
-import request, { gql } from 'graphql-request';
-import { cache } from 'react';
+import { IBlog, ICategoryAndTags } from '@/types'
+import request, { gql } from 'graphql-request'
+import { cache } from 'react'
 
-const graphqlAPI = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT!;
+const graphqlAPI = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT!
 
 export const getCategories = async () => {
 	const query = gql`
@@ -15,14 +15,14 @@ export const getCategories = async () => {
 				}
 			}
 		}
-	`;
+	`
 
 	const { categories } = await request<{ categories: ICategoryAndTags[] }>(
 		graphqlAPI,
 		query
-	);
-	return categories;
-};
+	)
+	return categories
+}
 
 export const getBlogsByCategory = cache(async (slug: string) => {
 	const query = gql`
@@ -58,10 +58,10 @@ export const getBlogsByCategory = cache(async (slug: string) => {
 				name
 			}
 		}
-	`;
+	`
 
 	const { category } = await request<{
-		category: { blogs: IBlog[]; name: string };
-	}>(graphqlAPI, query, { slug });
-	return category;
-});
+		category: { blogs: IBlog[]; name: string }
+	}>(graphqlAPI, query, { slug })
+	return category
+})

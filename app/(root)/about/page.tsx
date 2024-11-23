@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 	title: 'About us',
 };
 
-async function AboutPage() {
+async function About() {
 	const authors = await getAuthors();
 
 	return (
@@ -90,4 +90,4 @@ async function AboutPage() {
 	);
 }
 
-export default AboutPage;
+export default About;
