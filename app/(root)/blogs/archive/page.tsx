@@ -39,7 +39,7 @@ async function Archive() {
 				</div>
 			</div>
 			{blogs.map(blog => (
-				<>
+				<div key={blog.year}>
 					<div className='flex flex-col space-y-3 mt-8'>
 						<div className='relative'>
 							<span className='text-5xl font-creteRound relative z-20'>
@@ -65,7 +65,7 @@ async function Archive() {
 							</div>
 						))}
 					</div>
-				</>
+				</div>
 			))}
 		</div>
 	);
