@@ -1,3 +1,5 @@
+'use client';
+import SearchCard from '@/components/cards/search';
 import { Badge } from '@/components/ui/badge';
 import {
 	Drawer,
@@ -6,12 +8,35 @@ import {
 	DrawerTrigger,
 } from '@/components/ui/drawer';
 import { Input } from '@/components/ui/input';
+import { Separator } from '@/components/ui/separator';
 import { popularCategories, popularTags } from '@/constants';
+import { getSearchBlogs } from '@/service/blog.service';
+import { IBlog } from '@/types';
 import { DialogDescription, DialogTitle } from '@radix-ui/react-dialog';
-import { Minus, Search } from 'lucide-react';
+import { debounce } from 'lodash';
+import { Loader2, Minus, Search } from 'lucide-react';
 import Link from 'next/link';
+import { ChangeEvent, useState } from 'react';
 
 function GlobalSearch() {
+	const [isLoading, setisLoading] = useState(false);
+	const [blogs, setBlogs] = useState<IBlog[]>([]);
+
+	const handleSearch = async (e: ChangeEvent<HTMLInputElement>) => {
+		const text = e.target.value.toLowerCase();
+
+		if (text && text.length > 2) {
+			setisLoading(true);
+			const data = await getSearchBlogs(text);
+			setBlogs(data);
+			setisLoading(false);
+		} else {
+			setBlogs([]);
+			setisLoading(false);
+		}
+	};
+
+	const debounceSearch = debounce(handleSearch, 500);
 	return (
 		<Drawer>
 			<DrawerTrigger>
@@ -27,8 +52,20 @@ function GlobalSearch() {
 					<Input
 						className='bg-secondary'
 						placeholder='Type to search blog...'
+						onChange={debounceSearch}
+						disabled={isLoading}
 					/>
-
+					{!isLoading && <Loader2 className='animate-spin m-4 mx-auto' />}
+					{blogs.length ? (
+						<div className='text-2xl font-creteRound mt-8'>
+							{blogs.length} Results found
+						</div>
+					) : null}
+					<div className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 mt-2'>
+						{blogs &&
+							blogs.map(blog => <SearchCard key={blog.slug} {...blog} />)}
+					</div>
+					{blogs.length ? <Separator className='mt-3' /> : null}
 					<div className='flex flex-col space-y-2 mt-4'>
 						<div className='flex items-center gap-2'>
 							<p className='font-createRound text-2xl'>
