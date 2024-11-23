@@ -1,4 +1,5 @@
 'use client';
+
 import SearchCard from '@/components/cards/search';
 import { Badge } from '@/components/ui/badge';
 import {
@@ -19,24 +20,25 @@ import Link from 'next/link';
 import { ChangeEvent, useState } from 'react';
 
 function GlobalSearch() {
-	const [isLoading, setisLoading] = useState(false);
+	const [isLoading, setIsLoading] = useState(false);
 	const [blogs, setBlogs] = useState<IBlog[]>([]);
 
 	const handleSearch = async (e: ChangeEvent<HTMLInputElement>) => {
 		const text = e.target.value.toLowerCase();
 
 		if (text && text.length > 2) {
-			setisLoading(true);
+			setIsLoading(true);
 			const data = await getSearchBlogs(text);
 			setBlogs(data);
-			setisLoading(false);
+			setIsLoading(false);
 		} else {
 			setBlogs([]);
-			setisLoading(false);
+			setIsLoading(false);
 		}
 	};
 
 	const debounceSearch = debounce(handleSearch, 500);
+
 	return (
 		<Drawer>
 			<DrawerTrigger>
@@ -45,20 +47,18 @@ function GlobalSearch() {
 					<Search className='w-4 h-4' />
 				</div>
 			</DrawerTrigger>
-			<DrawerContent aria-label='Custom Drawer Title'>
+			<DrawerContent>
 				<div className='container max-w-6xl mx-auto py-12'>
-					<DialogTitle />
-					<DialogDescription />
 					<Input
 						className='bg-secondary'
 						placeholder='Type to search blog...'
 						onChange={debounceSearch}
 						disabled={isLoading}
 					/>
-					{!isLoading && <Loader2 className='animate-spin m-4 mx-auto' />}
+					{isLoading && <Loader2 className='animate-spin mt-4 mx-auto' />}
 					{blogs.length ? (
 						<div className='text-2xl font-creteRound mt-8'>
-							{blogs.length} Results found
+							{blogs.length} Results found.
 						</div>
 					) : null}
 					<div className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 mt-2'>
@@ -68,10 +68,11 @@ function GlobalSearch() {
 					{blogs.length ? <Separator className='mt-3' /> : null}
 					<div className='flex flex-col space-y-2 mt-4'>
 						<div className='flex items-center gap-2'>
-							<p className='font-createRound text-2xl'>
+							<p className='font-creteRound text-2xl'>
 								See posts by categories
 							</p>
 							<Minus />
+
 							<Link href={'/categories'}>
 								<DrawerClose className='text-blue-500 underline hover:opacity-90'>
 									See all
@@ -80,7 +81,7 @@ function GlobalSearch() {
 						</div>
 						<div className='flex flex-wrap gap-2'>
 							{popularCategories.map(item => (
-								<Link href={`/categories/${item.slug}`} key={item.slug}>
+								<Link key={item.slug} href={`/categories/${item.slug}`}>
 									<DrawerClose>
 										<Badge variant={'secondary'}>{item.name}</Badge>
 									</DrawerClose>
@@ -88,9 +89,10 @@ function GlobalSearch() {
 							))}
 						</div>
 					</div>
+
 					<div className='flex flex-col space-y-2 mt-4'>
 						<div className='flex items-center gap-2'>
-							<p className='font-createRound text-2xl'>See posts by tags</p>
+							<p className='font-creteRound text-2xl'>See posts by tags</p>
 							<Minus />
 							<Link href={'/tags'}>
 								<DrawerClose className='text-blue-500 underline hover:opacity-90'>
@@ -100,7 +102,7 @@ function GlobalSearch() {
 						</div>
 						<div className='flex flex-wrap gap-2'>
 							{popularTags.map(item => (
-								<Link href={`/tags/${item.slug}`} key={item.slug}>
+								<Link key={item.slug} href={`/tags/${item.slug}`}>
 									<DrawerClose>
 										<Badge variant={'secondary'}>{item.name}</Badge>
 									</DrawerClose>
@@ -109,6 +111,8 @@ function GlobalSearch() {
 						</div>
 					</div>
 				</div>
+				<DialogTitle />
+				<DialogDescription />
 			</DrawerContent>
 		</Drawer>
 	);

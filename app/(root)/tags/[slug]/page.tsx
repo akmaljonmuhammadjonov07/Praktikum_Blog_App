@@ -3,6 +3,18 @@ import { getBlogsByTag } from '@/service/tag.service';
 import { Dot, Home } from 'lucide-react';
 import Link from 'next/link';
 
+export async function generateMetadata({
+	params,
+}: {
+	params: { slug: string };
+}) {
+	const blog = await getBlogsByTag(params.slug);
+
+	return {
+		title: blog.name,
+	};
+}
+
 async function Page({ params }: { params: { slug: string } }) {
 	const tag = await getBlogsByTag(params.slug);
 
@@ -26,7 +38,7 @@ async function Page({ params }: { params: { slug: string } }) {
 				</div>
 			</div>
 
-			<div className='grid grid-cols-2 max-md:grid-cols-1 gap-x-4 gap-y-24 mt-24'>
+			<div className='grid grid-cols-2 max-md:grid-cols-1 gap-x-4 gap-y-24 mt-24 gap-4'>
 				{tag.blogs.map(blog => (
 					<BlogCard key={blog.title} {...blog} isVertical />
 				))}
