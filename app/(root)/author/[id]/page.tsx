@@ -5,6 +5,7 @@ import Image from 'next/image';
 async function Page({ params }: { params: { id: string } }) {
 	const author = await getDetaileddAuthor(params.id);
 
+	console.log(author);
 	return (
 		<div className='max-w-6xl mx-auto pt-36'>
 			<div className='flex mt-6 gap-6 items-center max-md:flex-col'>
