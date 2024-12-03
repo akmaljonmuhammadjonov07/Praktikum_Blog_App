@@ -33,10 +33,11 @@ export const metadata: Metadata = {
 		type: 'website',
 		url: 'https://blog.akmaldev.uz',
 		locale: 'en_EN',
-		images: 'https://media.graphassets.com/kXL006lyRnW46IKTHdHs',
+		images:
+			'https://www.canva.com/design/DAGYMvUkjbw/Yfl_vO1lkU-m01mxnM0pcw/edit?utm_content=DAGYMvUkjbw&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton',
 		countryName: 'Uzbekistan',
 		siteName: 'Blog',
-		emails: 'info@asqarbekdev.uz',
+		emails: 'info@akmaldev.uz',
 	},
 };
 
