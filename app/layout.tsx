@@ -34,7 +34,7 @@ export const metadata: Metadata = {
 		url: 'https://blog.akmaldev.uz',
 		locale: 'en_EN',
 		images:
-			'/https://www.canva.com/design/DAGYMvUkjbw/hAGc7Dj8C54gt-qHcBDxXg/view?utm_content=DAGYMvUkjbw&utm_campaign=designshare&utm_medium=link&utm_source=editor',
+			'https://www.canva.com/design/DAGYMvUkjbw/hAGc7Dj8C54gt-qHcBDxXg/view?utm_content=DAGYMvUkjbw&utm_campaign=designshare&utm_medium=link&utm_source=editor',
 		countryName: 'Uzbekistan',
 		siteName: 'Blog',
 		emails: 'info@akmaldev.uz',
