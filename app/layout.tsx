@@ -33,7 +33,8 @@ export const metadata: Metadata = {
 		type: 'website',
 		url: 'https://blog.akmaldev.uz',
 		locale: 'en_EN',
-		images: '/photo_2025-03-09_17-14-00.jpg',
+		images:
+			'https://blog.akmaldev.uz/_next/image?url=https%3A%2F%2Fus-west-2.graphassets.com%2Fcm3qooap50d2407k649bxflq5%2Fcm3u08x6ghgt807n0xv8w4vvd&w=1920&q=75',
 		countryName: 'Uzbekistan',
 		siteName: 'Blog',
 		emails: 'info@akmaldev.uz',
