@@ -1,7 +1,7 @@
-import { IAuthor } from '@/types'
-import request, { gql } from 'graphql-request'
+import { IAuthor } from '@/types';
+import request, { gql } from 'graphql-request';
 
-const graphqlAPI = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT!
+const graphqlAPI = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT!;
 
 export const getAuthors = async () => {
 	const query = gql`
@@ -18,11 +18,11 @@ export const getAuthors = async () => {
 				}
 			}
 		}
-	`
+	`;
 
-	const { authors } = await request<{ authors: IAuthor[] }>(graphqlAPI, query)
-	return authors
-}
+	const { authors } = await request<{ authors: IAuthor[] }>(graphqlAPI, query);
+	return authors;
+};
 
 export const getDetaileddAuthor = async (id: string) => {
 	const query = gql`
@@ -62,10 +62,10 @@ export const getDetaileddAuthor = async (id: string) => {
 				}
 			}
 		}
-	`
+	`;
 
 	const { author } = await request<{
-		author: IAuthor
-	}>(graphqlAPI, query, { id })
-	return author
-}
+		author: IAuthor;
+	}>(graphqlAPI, query, { id });
+	return author;
+};

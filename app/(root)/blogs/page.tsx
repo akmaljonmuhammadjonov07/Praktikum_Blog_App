@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 	title: 'All blogs',
 };
 
-async function Blogs() {
+async function BlogsPage() {
 	const blogs = await getBlogs();
 
 	return (
@@ -40,4 +40,4 @@ async function Blogs() {
 	);
 }
 
-export default Blogs;
+export default BlogsPage;

@@ -19,13 +19,13 @@ const workSans = localFont({
 
 export const metadata: Metadata = {
 	metadataBase: new URL('https://blog.akmaldev.uz'),
-	title: 'Sammi Dasturlashga oid maqolalar',
+	title: 'Akmaldev Dasturlashga oid maqolalar',
 	description:
 		"Dasturlash haqida yangiliklar, maslahatlar, va dasturlash sohasidagi eng so'nggi xabarlar. Bizning blogda dasturlashni o'rganish va rivojlantirish uchun qo'llanma topishingiz mumkin",
 	authors: [{ name: 'Akmaljon Muhammadjonov', url: 'https://akmaldev.uz' }],
 	icons: { icon: '/favicon.png' },
 	keywords:
-		"samar badriddinov, sammi, dasturlash kurslari, dasturlashga oid darslar, reactjs uzbek tilida, vuejs uzbek tilida, redux uzbek tilida, sammi, sammi academy, bepul dasturlash, rezyume yozish, portfolio, sammi javascript, sammi raqamli avlod, javascript, reactjs, vuejs, javascript darslari, reactjs darslari, vuejs darslari, dasturlash darslari, o'zbek tilida dasturlash, reactjs o'zbek tilida, reactjs darslari o'zbek tilida, javascript darslari, javascript darslari o'zbek tilida, dasturash darslari o'zbek tilida, dasturlashni o'rganish, dasturlash, IT loyihalar o'zbek tilida",
+		"akmaljon muhammadjonov, akmaldev, dasturlash haqida, dasturlashga oid bloglar, reactjs uzbek tilida, redux uzbek tilida, sammi, rezyume, portfolio, raqamli avlod, javascript, reactjs, o'zbek tilida dasturlash, reactjs o'zbek tilida,  javascript darslari, javascript loyihalar o'zbek tilida,frontend loyihalar o'zbek tilida, dasturlashni o'rganish, dasturlash, IT loyihalar o'zbek tilida",
 	openGraph: {
 		title: 'Blog dasturlashga oid maqolalar',
 		description:
